@@ -18,6 +18,10 @@ class S3PmxiCompatibility {
    * Deactivate the S3 Uploads Plugin (if active).
    */
   public function deactivateS3() {
+    if (!function_exists('is_plugin_active')) {
+      include_once(ABSPATH . 'wp-admin/includes/plugin.php');
+    }
+
     if (is_plugin_active($this->s3)) {
       deactivate_plugins($this->s3);
     }
