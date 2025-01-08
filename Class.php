@@ -8,7 +8,11 @@ class S3PmxiCompatibility {
     'pmxi-admin-import',
     'pmxi-admin-manage',
     'pmxi-admin-settings',
-    'pmxi-admin-history'
+    'pmxi-admin-history',
+    'pmxe-admin-import',
+    'pmxe-admin-manage',
+    'pmxe-admin-settings',
+    'pmxe-admin-history',
   ];
 
   /** S3 Uploads Plugin path */
@@ -18,28 +22,29 @@ class S3PmxiCompatibility {
    * Deactivate the S3 Uploads Plugin (if active).
    */
   public function deactivateS3() {
-    if (!function_exists('is_plugin_active')) {
-      include_once(ABSPATH . 'wp-admin/includes/plugin.php');
+    if ( !function_exists( 'is_plugin_active' ) ) {
+      include_once ABSPATH . 'wp-admin/includes/plugin.php';
     }
 
-    if (is_plugin_active($this->s3)) {
-      deactivate_plugins($this->s3);
+    if ( is_plugin_active( $this->s3 ) ) {
+      deactivate_plugins( $this->s3 );
     }
   }
 
   /**
    * Activates the S3 Uploads plugin if it exists and the constants are
    * defined in the WP Configuration.
-   * @return  [WP_Error|null]  WP_Error on invalid file or 'NULL' on success.
+   *
+   * @return  [WP_Error|null]  WP_Error on invalid file or 'NULL' on success
    */
   public function activateS3() {
-    if (is_admin() &&
-      file_exists(WP_PLUGIN_DIR . '/' . $this->s3) &&
-      defined('S3_UPLOADS_BUCKET') &&
-      defined('S3_UPLOADS_KEY') &&
-      defined('S3_UPLOADS_SECRET') &&
-      defined('S3_UPLOADS_REGION')) {
-      return activate_plugin($this->s3);
+    if ( is_admin() &&
+      file_exists( WP_PLUGIN_DIR . '/' . $this->s3 ) &&
+      defined( 'S3_UPLOADS_BUCKET' ) &&
+      defined( 'S3_UPLOADS_KEY' ) &&
+      defined( 'S3_UPLOADS_SECRET' ) &&
+      defined( 'S3_UPLOADS_REGION' ) ) {
+      return activate_plugin( $this->s3 );
     }
   }
 }

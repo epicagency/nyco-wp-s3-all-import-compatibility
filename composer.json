@@ -1,6 +1,6 @@
 {
   "name": "nyco/wp-s3-all-import-compatibility",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "type": "wordpress-muplugin",
   "license": "GPL-3.0+",
   "description": "A developer plugin for WordPress that ensures compatibility between hummanmade / S3 Uploads and WP All Import.",
@@ -36,5 +36,10 @@
     "fix": [
       "vendor/bin/phpcbf --standard=standard.xml --extensions=php"
     ]
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    }
   }
 }
