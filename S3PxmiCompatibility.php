@@ -30,6 +30,7 @@ add_action( 'muplugins_loaded', function () use ( $S3PmxiCompatibility ) {
  * Note: It is not currently documented.
  */
 add_action( 'pmxi_action_after', [$S3PmxiCompatibility, 'activateS3'] );
+add_action( 'wpallexport_action_after', [$S3PmxiCompatibility, 'activateS3'] );
 
 /*
  * This action fires before WP All Import starts the import process.
